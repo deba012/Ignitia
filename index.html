@@ -114,7 +114,6 @@
             height: 160px;
             margin-bottom: 30px;
             background: rgba(102,126,234,0.1);
-            border: 2px solid rgba(102,126,234,0.3);
             border-radius: 25px;
             display: flex;
             align-items: center;
@@ -487,12 +486,13 @@
 </nav>
 
 <section class="hero" id="home">
-    <div class="hero-logo">
-        <img src="icon.webp" alt="IGNITIA">
+    <div class="hero-tag" id="typing-text"></div>
+    <div style="display: flex; align-items: center; justify-content: center; gap: 20px; opacity: 0; transition: opacity 1s ease-in-out;">
+        <div class="hero-logo" id="logo">
+            <img src="icon.webp" alt="IGNITIA">
+        </div>
+        <h1 class="hero-title" id="ignitia-title">IGNITIA</h1>
     </div>
-
-    <div class="hero-tag">PSIT PRESENTS</div>
-    <h1 class="hero-title">IGNITIA</h1>
     <p class="subtitle">TECH • CULTURE • COMPETITION</p>
 
     <div class="hero-stats">
@@ -709,6 +709,38 @@
 </footer>
 
 <script>
+    // Typing effect for "PSIT PRESENTS"
+    const text = "PSIT PRESENTS";
+    const words = text.split(" ");
+    let wordIndex = 0;
+    let charIndex = 0;
+    const typingText = document.getElementById("typing-text");
+
+    function typeWord() {
+        if (wordIndex < words.length) {
+            if (charIndex < words[wordIndex].length) {
+                typingText.textContent += words[wordIndex][charIndex];
+                charIndex++;
+                setTimeout(typeWord, 150); 
+            } else {
+                typingText.textContent += " ";
+                charIndex = 0;
+                wordIndex++;
+                setTimeout(typeWord, 300); 
+            }
+        } else {
+            setTimeout(() => {
+                const logoContainer = document.getElementById("logo").parentElement;
+                logoContainer.style.opacity = "1";
+            }, 500);
+        }
+    }
+
+    
+    window.addEventListener("load", () => {
+        setTimeout(typeWord, 1000); 
+    });
+
     // countdown timer
     const festDate = new Date("February 26, 2026 09:00:00").getTime();
 
