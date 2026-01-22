@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IGNITIA 2026 - PSIT Fest</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(102,126,234,0.2);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+        }
+
+        .logo-img img {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .register-btn {
+            padding: 10px 25px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 20px;
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .register-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* hero section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 40px 80px;
+            background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(102,126,234,0.1));
+        }
+
+        .hero-logo {
+            width: 160px;
+            height: 160px;
+            margin-bottom: 30px;
+            background: rgba(102,126,234,0.1);
+            border: 2px solid rgba(102,126,234,0.3);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-logo img {
+            width: 90%;
+            height: 90%;
+            border-radius: 20px;
+        }
+
+        .hero-tag {
+            font-size: 12px;
+            color: #667eea;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+        }
+
+        .hero-title {
+            font-size: 100px;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #fff, #667eea, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            letter-spacing: 5px;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: #aaa;
+            margin-bottom: 50px;
+            letter-spacing: 5px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .stat-item {
+            padding: 20px 30px;
+            background: rgba(102,126,234,0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(102,126,234,0.3);
+            min-width: 140px;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        .cta-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 60px;
+        }
+
+        .cta-btn {
+            padding: 15px 35px;
+            font-size: 15px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: 2px solid transparent;
+            color: #fff;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            border: 2px solid #667eea;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(102,126,234,0.2);
+        }
+
+        /* countdown timer */
+        .countdown {
+            display: flex;
+            gap: 30px;
+            padding: 30px 50px;
+            background: rgba(102,126,234,0.05);
+            border-radius: 20px;
+        }
+
+        .countdown-item {
+            text-align: center;
+            padding: 25px 20px;
+            background: rgba(102,126,234,0.1);
+            border-radius: 15px;
+            min-width: 120px;
+        }
+
+        .countdown-value {
+            font-size: 50px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .countdown-label {
+            font-size: 12px;
+            color: #aaa;
+            text-transform: uppercase;
+        }
+
+        /* sections */
+        section {
+            padding: 80px 60px;
+        }
+
+        h2 {
+            font-size: 48px;
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, #fff, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-tag {
+            text-align: center;
+            color: #667eea;
+            font-size: 11px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        /* events grid */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .event-card {
+            background: rgba(102,126,234,0.05);
+            border: 1px solid rgba(102,126,234,0.2);
+            border-radius: 20px;
+            padding: 30px;
+            transition: 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            background: rgba(102,126,234,0.1);
+            box-shadow: 0 20px 40px rgba(102,126,234,0.3);
+        }
+
+        .event-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .event-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .event-desc {
+            color: #aaa;
+            line-height: 1.6;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .event-prize {
+            padding: 8px 15px;
+            background: rgba(102,126,234,0.15);
+            border-radius: 10px;
+            color: #f093fb;
+            font-size: 12px;
+            display: inline-block;
+        }
+
+        /* about section */
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #bbb;
+        }
+
+        /* highlights */
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .highlight-item {
+            text-align: center;
+            padding: 30px;
+            background: rgba(102,126,234,0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(102,126,234,0.2);
+        }
+
+        .highlight-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .highlight-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+
+        .highlight-desc {
+            color: #aaa;
+            font-size: 13px;
+        }
+
+        /* celebrities section */
+        .celebrities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .celebrity-card {
+            background: rgba(102,126,234,0.05);
+            border: 1px solid rgba(102,126,234,0.2);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .celebrity-card:hover {
+            transform: translateY(-10px);
+            background: rgba(102,126,234,0.1);
+            box-shadow: 0 20px 40px rgba(102,126,234,0.3);
+        }
+
+        .celebrity-image img {
+            width: 130px;
+            height: 130px;
+            border-radius: 15px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 2px solid rgba(102,126,234,0.3);
+        }
+
+        .celebrity-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .celebrity-desc {
+            color: #aaa;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* footer */
+        footer {
+            background: rgba(0,0,0,0.95);
+            padding: 50px 60px 25px;
+            text-align: center;
+            border-top: 1px solid rgba(102,126,234,0.2);
+        }
+
+        footer h3 {
+            font-size: 32px;
+            background: linear-gradient(135deg, #667eea, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .footer-content p {
+            color: #888;
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .social-links {
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            border-radius: 50%;
+            transition: 0.3s;
+            color: white;
+        }
+
+        .social-links a.facebook { background: #1877f2; }
+        .social-links a.instagram { 
+            background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); 
+        }
+        .social-links a.twitter { background: #1da1f2; border-radius: 10px; }
+        .social-links a.linkedin { background: #0077b5; border-radius: 12px; }
+        .social-links a.youtube { background: #ff0000; }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo-container">
+        <div class="logo-img"><img src="icon.webp" alt="logo"></div>
+        <div class="logo">IGNITIA</div>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#events">EVENTS</a></li>
+        <li><a href="#highlights">HIGHLIGHTS</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+    </ul>
+
+    <a href="#register" class="register-btn">REGISTER</a>
+</nav>
+
+<section class="hero" id="home">
+    <div class="hero-logo">
+        <img src="icon.webp" alt="IGNITIA">
+    </div>
+
+    <div class="hero-tag">PSIT PRESENTS</div>
+    <h1 class="hero-title">IGNITIA</h1>
+    <p class="subtitle">TECH • CULTURE • COMPETITION</p>
+
+    <div class="hero-stats">
+        <div class="stat-item">
+            <div class="stat-number">50K+</div>
+            <div class="stat-label">Participants</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">₹10L+</div>
+            <div class="stat-label">Prizes</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">100+</div>
+            <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">3 Days</div>
+            <div class="stat-label">Fest</div>
+        </div>
+    </div>
+
+    <div class="cta-container">
+        <a href="#register" class="cta-btn">REGISTER NOW</a>
+        <a href="#events" class="cta-btn cta-secondary">VIEW EVENTS</a>
+    </div>
+
+    <div class="countdown">
+        <div class="countdown-item">
+            <div class="countdown-value" id="days">00</div>
+            <div class="countdown-label">Days</div>
+        </div>
+        <div class="countdown-item">
+            <div class="countdown-value" id="hours">00</div>
+            <div class="countdown-label">Hours</div>
+        </div>
+        <div class="countdown-item">
+            <div class="countdown-value" id="minutes">00</div>
+            <div class="countdown-label">Minutes</div>
+        </div>
+        <div class="countdown-item">
+            <div class="countdown-value" id="seconds">00</div>
+            <div class="countdown-label">Seconds</div>
+        </div>
+    </div>
+</section>
+
+<section class="about" id="about">
+    <div class="section-tag">ABOUT THE FEST</div>
+    <h2>ABOUT IGNITIA 2026</h2>
+    <div class="about-content">
+        <p>
+            IGNITIA 2026 is the annual techno-cultural fest of Pranveer Singh Institute of Technology (PSIT).
+            The fest brings together students from different colleges to participate in technical competitions,
+            cultural events, and interactive activities.
+            <br><br>
+            Spread across three days, IGNITIA focuses on innovation, creativity, teamwork, and campus spirit.
+            It is a platform where students learn, compete, perform, and celebrate together.
+        </p>
+    </div>
+</section>
+
+<section id="events">
+    <div class="section-tag">EVENTS & COMPETITIONS</div>
+    <h2>MAJOR EVENTS</h2>
+
+    <div class="events-grid">
+        <div class="event-card">
+            <div class="event-icon">💻</div>
+            <div class="event-title">Hack the Future</div>
+            <div class="event-desc">
+                A 24-hour hackathon where teams work on real-world problems using technology.
+                Mentoring and guidance will be provided during the event.
+            </div>
+            <div class="event-prize">Prize Pool: ₹2,00,000</div>
+        </div>
+
+        <div class="event-card">
+            <div class="event-icon">🎭</div>
+            <div class="event-title">Neon Nights</div>
+            <div class="event-desc">
+                Cultural nights featuring dance performances, music, and DJ sessions that bring
+                the IGNITIA stage alive.
+            </div>
+            <div class="event-prize">Live Performances</div>
+        </div>
+
+        <div class="event-card">
+            <div class="event-icon">🎨</div>
+            <div class="event-title">Design Nexus</div>
+            <div class="event-desc">
+                A creative competition focused on UI/UX design, graphic design, and digital art.
+            </div>
+            <div class="event-prize">Prize Pool: ₹75,000</div>
+        </div>
+
+        <div class="event-card">
+            <div class="event-icon">🎤</div>
+            <div class="event-title">Battle of Bands</div>
+            <div class="event-desc">
+                College bands perform live on stage and compete for the top position.
+            </div>
+            <div class="event-prize">Prize Pool: ₹1,00,000</div>
+        </div>
+
+        <div class="event-card">
+            <div class="event-icon">🎯</div>
+            <div class="event-title">Tech Olympiad</div>
+            <div class="event-desc">
+                A technical quiz competition covering programming, emerging technologies,
+                and general tech knowledge.
+            </div>
+            <div class="event-prize">Prize Pool: ₹50,000</div>
+        </div>
+
+        <div class="event-card">
+            <div class="event-icon">⚡</div>
+            <div class="event-title">Startup Pitch</div>
+            <div class="event-desc">
+                Participants pitch their startup ideas to mentors and receive feedback and guidance.
+            </div>
+            <div class="event-prize">Funding Support Available</div>
+        </div>
+    </div>
+
+</section>
+
+<section class="highlights" id="highlights">
+    <div class="section-tag">WHAT MAKES US SPECIAL</div>
+    <h2>FEST HIGHLIGHTS</h2>
+
+    <div class="highlights-grid">
+        <div class="highlight-item">
+            <div class="highlight-icon">🏆</div>
+            <div class="highlight-title">Prizes & Certificates</div>
+            <div class="highlight-desc">Cash prizes, certificates, and recognition for winners.</div>
+        </div>
+
+        <div class="highlight-item">
+            <div class="highlight-icon">🎪</div>
+            <div class="highlight-title">Tech Expo</div>
+            <div class="highlight-desc">Student projects, tech demos, and innovation showcases.</div>
+        </div>
+
+        <div class="highlight-item">
+            <div class="highlight-icon">🎸</div>
+            <div class="highlight-title">Cultural Nights</div>
+            <div class="highlight-desc">Evenings filled with music, dance, and performances.</div>
+        </div>
+
+        <div class="highlight-item">
+            <div class="highlight-icon">🌐</div>
+            <div class="highlight-title">Campus Networking</div>
+            <div class="highlight-desc">Meet students from different colleges and domains.</div>
+        </div>
+    </div>
+</section>
+
+<section class="past-celebrities">
+    <div class="section-tag">LEGENDS WHO LIT THE STAGE</div>
+    <h2>PAST CELEBRITIES</h2>
+
+    <div class="celebrities-grid">
+        <div class="celebrity-card">
+            <div class="celebrity-image">
+                <img src="Sukhwinder_Singh_Press_Image_2__1_.jpg" alt="Sukhwinder Singh">
+            </div>
+            <div class="celebrity-name">Sukhwinder Singh</div>
+            <div class="celebrity-desc">
+                The voice of Bollywood blockbusters, Sukhwinder Singh brought the house down with his powerful renditions and soul-stirring performances in previous IGNITIA editions.
+            </div>
+        </div>
+
+        <div class="celebrity-card">
+            <div class="celebrity-image">
+                <img src="neeti.jpg" alt="Neeti Mohan">
+            </div>
+            <div class="celebrity-name">Neeti Mohan</div>
+            <div class="celebrity-desc">
+                Chart-topping singer and reality TV star Neeti Mohan mesmerized audiences with her angelic voice and electrifying stage presence at IGNITIA.
+            </div>
+        </div>
+
+        <div class="celebrity-card">
+            <div class="celebrity-image">
+                <img src="sevensongsbykailashkher51657174109.webp" alt="Kailash Kher">
+            </div>
+            <div class="celebrity-name">Kailash Kher</div>
+            <div class="celebrity-desc">
+                The Sufi rock maestro Kailash Kher delivered unforgettable fusion performances, blending traditional and modern music in spectacular IGNITIA concerts.
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="contact">
+    <div class="footer-content">
+        <h3>IGNITIA 2026</h3>
+        <p><strong>Pranveer Singh Institute of Technology</strong></p>
+        <p>Kanpur, Uttar Pradesh, India</p>
+        <p>Email: ignitia@psit.ac.in | Phone: +91 123 456 7890</p>
+
+        <div class="social-links">
+            <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
+        </div>
+
+        <p style="margin-top: 30px; color: #555; font-size: 12px;">
+            © 2026 IGNITIA | PSIT Fest
+        </p>
+    </div>
+</footer>
+
+<script>
+    // countdown timer
+    const festDate = new Date("February 26, 2026 09:00:00").getTime();
+
+    function updateTimer() {
+        const now = new Date().getTime();
+        const gap = festDate - now;
+
+        const days = Math.floor(gap / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((gap % (1000 * 60)) / 1000);
+
+        document.getElementById("days").textContent = days;
+        document.getElementById("hours").textContent = hours;
+        document.getElementById("minutes").textContent = minutes;
+        document.getElementById("seconds").textContent = seconds;
+    }
+
+    setInterval(updateTimer, 1000);
+</script>
+
+</body>
+</html>
